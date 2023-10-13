@@ -1,12 +1,13 @@
 {
   "name": "tdd",
   "version": "1.0.0",
-  "description": "",
+  "description": "Practica TDD Prueba y gestion de la configuracionß",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --no-cache --detectOpenHandles",
+    "test:watch": "yarn test --watch"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
