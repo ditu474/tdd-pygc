@@ -12,6 +12,7 @@ describe("App", () => {
 
   it("should read numbers and operation from console and log the result", async () => {
     // Arrange
+    // Test Table
     const tt = [
       [123, 456, "+", 579],
       [123, 456, "-", -333],
@@ -30,7 +31,7 @@ describe("App", () => {
 
       // Assert
       expect(console.log).toHaveBeenCalledWith(
-        `${firstNumber} ${operation} ${secondNumber} = ${result}`,
+        `${firstNumber} ${operation} ${secondNumber} = ${result}`
       );
     }
   });

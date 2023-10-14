@@ -29,8 +29,6 @@ const app = async () => {
   }
 
   console.log(`${firstNumber} ${operation} ${secondNumber} = ${result}`);
-
-  return;
 };
 
 module.exports = app;
