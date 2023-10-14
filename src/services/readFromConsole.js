@@ -7,7 +7,7 @@ const readFromConsole = (question) => {
   });
 
   return new Promise((resolve) =>
-    readlineInterface.question(question, (answer) => resolve(answer)),
+    readlineInterface.question(question, resolve),
   );
 };
 
