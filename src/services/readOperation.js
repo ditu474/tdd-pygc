@@ -1,4 +1,4 @@
-const readFromConsole = require("@/services/readFromConsole");
+const readFromConsole = require("./readFromConsole");
 
 const readOperation = async () => {
   let operation = await readFromConsole("Enter operation (+, -, /, *): ");

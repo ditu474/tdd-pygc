@@ -1,5 +1,6 @@
-const readNumbers = require("@/services/readNumbers");
-const readOperation = require("@/services/readOperation");
+const readNumbers = require("./services/readNumbers");
+const readOperation = require("./services/readOperation");
+const actions = require("./actions");
 
 const app = async () => {
   const [firstNumber, secondNumber] = await readNumbers();
@@ -8,19 +9,19 @@ const app = async () => {
 
   switch (operation) {
     case "+":
-      result = firstNumber + secondNumber;
+      result = actions.add(firstNumber, secondNumber);
       break;
 
     case "-":
-      result = firstNumber - secondNumber;
+      result = actions.subtract(firstNumber, secondNumber);
       break;
 
     case "/":
-      result = firstNumber / secondNumber;
+      result = actions.divide(firstNumber, secondNumber);
       break;
 
     case "*":
-      result = firstNumber * secondNumber;
+      result = actions.multiply(firstNumber, secondNumber);
       break;
 
     default:
@@ -28,6 +29,8 @@ const app = async () => {
   }
 
   console.log(`${firstNumber} ${operation} ${secondNumber} = ${result}`);
+
+  return;
 };
 
 module.exports = app;

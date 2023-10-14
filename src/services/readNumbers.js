@@ -1,4 +1,4 @@
-const readFromConsole = require("@/services/readFromConsole");
+const readFromConsole = require("./readFromConsole");
 
 const convertToNumber = (value) => {
   try {

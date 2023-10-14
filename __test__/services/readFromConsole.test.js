@@ -4,6 +4,7 @@ const mockQuestion = jest.fn();
 jest.mock("readline", () => ({
   createInterface: () => ({
     question: mockQuestion,
+    close: jest.fn(),
   }),
 }));
 
