@@ -87,4 +87,48 @@ describe("Read numbers from console service", () => {
     expect(readFromConsole).toHaveBeenNthCalledWith(5, nanMessage);
     expect(result).toEqual([firstNumber, secondNumber]);
   });
+
+  it("should ask again for a number if the number is bigger than the max safe integer", async () => {
+    // Arrange
+    const maxSafeInteger = Number.MAX_SAFE_INTEGER;
+    const firstNumber = maxSafeInteger + 1;
+    const secondNumber = 456;
+    readFromConsole
+      .mockResolvedValueOnce(firstNumber.toString())
+      .mockResolvedValueOnce(123)
+      .mockResolvedValueOnce(secondNumber.toString());
+
+    // Act
+    const result = await readNumbers();
+
+    // Assert
+    const nanMessage = "The input is not a number. Please enter a number: ";
+    expect(readFromConsole).toHaveBeenCalledTimes(3);
+    expect(readFromConsole).toHaveBeenNthCalledWith(1, "Enter first number: ");
+    expect(readFromConsole).toHaveBeenNthCalledWith(2, nanMessage);
+    expect(readFromConsole).toHaveBeenNthCalledWith(3, "Enter second number: ");
+    expect(result).toEqual([123, secondNumber]);
+  });
+
+  it("should ask again for a number if the number is smaller than the min safe integer", async () => {
+    // Arrange
+    const minSafeInteger = Number.MIN_SAFE_INTEGER;
+    const firstNumber = minSafeInteger - 1;
+    const secondNumber = 456;
+    readFromConsole
+      .mockResolvedValueOnce(firstNumber.toString())
+      .mockResolvedValueOnce(123)
+      .mockResolvedValueOnce(secondNumber.toString());
+
+    // Act
+    const result = await readNumbers();
+
+    // Assert
+    const nanMessage = "The input is not a number. Please enter a number: ";
+    expect(readFromConsole).toHaveBeenCalledTimes(3);
+    expect(readFromConsole).toHaveBeenNthCalledWith(1, "Enter first number: ");
+    expect(readFromConsole).toHaveBeenNthCalledWith(2, nanMessage);
+    expect(readFromConsole).toHaveBeenNthCalledWith(3, "Enter second number: ");
+    expect(result).toEqual([123, secondNumber]);
+  });
 });

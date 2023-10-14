@@ -3,6 +3,9 @@ const readFromConsole = require("@/services/readFromConsole");
 const convertToNumber = (value) => {
   try {
     const number = parseFloat(value);
+    if (number > Number.MAX_SAFE_INTEGER || number < Number.MIN_SAFE_INTEGER)
+      throw new Error("Number is too big");
+
     return number;
   } catch (_) {
     return NaN;
